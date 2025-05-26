@@ -14,7 +14,6 @@ BookHaven es una aplicación web diseñada para amantes de la lectura. Permite a
     * [Ejecución](#ejecución)
 * [Estructura del Proyecto](#estructura-del-proyecto)
 * [Endpoints de la API](#endpoints-de-la-api)
-* [Licencia](#licencia)
 
 ## Características Principales
 
@@ -135,8 +134,3 @@ Estos son los principales endpoints de la API backend de la aplicación:
 * **Calificaciones (`src/app/api/ratings/route.ts`)**
     * `GET /api/ratings?bookId={bookId}`: Obtiene la calificación promedio y el conteo para un libro.
     * `POST /api/ratings`: Guarda o actualiza la calificación de un usuario para un libro (requiere autenticación).
-
-## Licencia
-
-Este proyecto está bajo la Licencia ISC. Consulta el archivo `LICENSE` (si existe) o el `package.json` para más detalles.
-
