@@ -89,11 +89,6 @@ Sigue estos pasos para configurar y ejecutar el proyecto en tu entorno local.
     npx prisma migrate dev
     ```
     Esto creará las tablas definidas en tus archivos de migración dentro de la carpeta `prisma/migrations`.
-3.  (Opcional) Puedes poblar la base de datos con datos iniciales (como las listas predeterminadas para un usuario de ejemplo) usando el script de seed:
-    ```bash
-    npx prisma db seed
-    ```
-    *Nota: El script `prisma/seed.ts` está configurado para crear un usuario de ejemplo y sus listas predeterminadas. Asegúrate de que `tsx` esté instalado como dependencia de desarrollo si ejecutas el seed directamente con `tsx`.*
 
 ### Ejecución
 
