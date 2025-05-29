@@ -51,7 +51,7 @@ Sigue estos pasos para configurar y ejecutar el proyecto en tu entorno local.
 
 1.  **Clona el repositorio:**
     ```bash
-    git clone [https://github.com/tu-usuario/bookhaven.git](https://github.com/tu-usuario/bookhaven.git)
+    git clone git clone https://github.com/Eliel-Ontiveros/bookhaven.git
     cd bookhaven
     ```
 2.  **Instala las dependencias:**
