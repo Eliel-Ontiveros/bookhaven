@@ -58,7 +58,7 @@ const BookListModal: React.FC<BookListModalProps> = ({
         </select>
         <button
           onClick={handleAddToBookList}
-          className="bg-[#003366] text-white px-4 py-2 rounded w-full mb-4 hover:bg-[#004C99]"
+          className="bg-[#E2725B] text-white px-4 py-2 rounded w-full mb-4 hover:bg-[#c95c47]"
           disabled={!selectedListId || (listIdWithBook !== null && selectedListId === listIdWithBook)}
         >
           Guardar en la lista

@@ -35,9 +35,6 @@ export default function BookDetails() {
     listNameWithBook,
     listIdWithBook,
     fetchListsAndFindBook,
-    setBookLists,
-    setListNameWithBook,
-    setListIdWithBook,
   } = useBookLists(book);
 
   const { comments, loadingComments, addComment } = useBookComments(book?.id || "");
@@ -77,7 +74,6 @@ export default function BookDetails() {
         <div className="flex flex-col md:flex-row w-full max-w-5xl gap-8 mt-8">
           <BookInfo book={book} />
           
-          {/* Contenedor derecho: descripción */}
           <div className="flex-1 flex justify-center items-start">
             <div className="bg-[#FFFDD0] rounded-xl shadow p-6 max-w-2xl w-full text-justify text-[#5D4037]">
               <p className="text-base">{book.volumeInfo.description ?? "Sin descripcion"}</p>
@@ -85,7 +81,6 @@ export default function BookDetails() {
           </div>
         </div>
 
-        {/*Agregar a una lista*/}
         <button
           onClick={() => setShowModal(true)}
           className="bg-[#7B241C] text-white px-6 py-2 rounded-lg mt-8 font-bold shadow hover:bg-[#BC8F8F] transition"

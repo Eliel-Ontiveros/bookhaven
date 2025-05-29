@@ -41,7 +41,6 @@ export default function RootLayout({
   return (
     <>
       <Toaster position="top-right" toastOptions={{ duration: 4000 }} />
-      {/* Toaster global para notificaciones */}
       <html lang="en">
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-gradient-to-br from-blue-100 via-white to-amber-100`}

@@ -1,4 +1,3 @@
-// filepath: src/pages/api/auth/index.ts
 import { PrismaClient } from "@prisma/client";
 import type { NextApiRequest, NextApiResponse } from "next";
 import jwt from "jsonwebtoken";
@@ -37,7 +36,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           },
         });
 
-        // Crear listas predefinidas para el usuario
         const defaultLists = [
           "Lo quiero leer",
           "Leyendo actualmente",
@@ -72,7 +70,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
     
   } else if (req.method === "GET") {
-    // Obtener usuario autenticado
     const authHeader = req.headers.authorization;
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
       return res.status(401).json({ error: "No autorizado" });

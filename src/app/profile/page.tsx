@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import SearchLayout from "@/app/search-layout";
+import { toast } from "react-hot-toast";
 
 interface Book {
   id: string;
@@ -27,6 +28,7 @@ export default function Profile() {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [selectedListId, setSelectedListId] = useState<number | null>(null);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const router = useRouter();
 
   const defaultListNames = ["Lo quiero leer", "Leyendo actualmente", "Leído"];
@@ -81,23 +83,27 @@ export default function Profile() {
     const list = user?.bookLists?.find((l) => l.id === selectedListId);
     if (!list) return;
     if (defaultListNames.includes(list.name)) {
-      alert("No puedes eliminar una lista predefinida.");
+      toast.error("No puedes eliminar una lista predefinida.");
       return;
     }
-    if (!confirm(`¿Seguro que deseas eliminar la lista "${list.name}"? Esta acción no se puede deshacer.`)) return;
+    setShowDeleteConfirm(true);
+  };
+
+  const confirmDeleteList = async () => {
+    if (!selectedListId) return;
     try {
       const token = localStorage.getItem("token");
       if (!token) {
-        alert("Por favor, inicia sesión.");
+        toast.error("Por favor, inicia sesión.");
         return;
       }
-      const res = await fetch("/api/booklist/delete", {
-        method: "POST",
+      const res = await fetch("/api/booklist", {
+        method: "DELETE",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ bookListId: selectedListId }),
+        body: JSON.stringify({ bookListId: selectedListId, deleteList: true }),
       });
       if (res.ok) {
         setUser((prev) =>
@@ -109,13 +115,15 @@ export default function Profile() {
             : prev
         );
         setSelectedListId(null);
-        alert("Lista eliminada correctamente.");
+        toast.success("Lista eliminada correctamente.");
       } else {
         const errorData = await res.json();
-        alert(errorData.error || "Error al eliminar la lista.");
+        toast.error(errorData.error || "Error al eliminar la lista.");
       }
     } catch (error) {
-      alert("Error al eliminar la lista.");
+      toast.error("Error al eliminar la lista.");
+    } finally {
+      setShowDeleteConfirm(false);
     }
   };
 
@@ -182,12 +190,37 @@ export default function Profile() {
               </select>
               {selectedList &&
                 !defaultListNames.includes(selectedList.name) && (
-                  <button
-                    className="bg-red-500 text-white px-4 py-2 rounded mb-4"
-                    onClick={handleDeleteList}
-                  >
-                    Eliminar lista
-                  </button>
+                  <div className="flex flex-col items-center w-full">
+                    <div className="relative w-full flex flex-col items-center">
+                      <button
+                        className="bg-red-500 text-white px-4 py-2 rounded mb-4"
+                        onClick={handleDeleteList}
+                      >
+                        Eliminar lista
+                      </button>
+                      {showDeleteConfirm && (
+                        <div className="absolute left-1/2 -translate-x-1/2 top-0 mt-12 bg-white border border-gray-300 rounded shadow-lg p-4 z-20 flex flex-col items-center w-64">
+                          <p className="text-center mb-3 text-sm text-gray-800">
+                            ¿Seguro que deseas eliminar la lista "{selectedList.name}"?
+                          </p>
+                          <div className="flex gap-2">
+                            <button
+                              className="bg-red-500 text-white px-3 py-1 rounded text-sm hover:bg-red-600"
+                              onClick={confirmDeleteList}
+                            >
+                              Eliminar
+                            </button>
+                            <button
+                              className="bg-gray-300 text-gray-800 px-3 py-1 rounded text-sm hover:bg-gray-400"
+                              onClick={() => setShowDeleteConfirm(false)}
+                            >
+                              Cancelar
+                            </button>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
                 )}
             </div>
             {selectedList && (

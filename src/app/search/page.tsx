@@ -44,7 +44,7 @@ function SearchResultsComponent() {
 
   return (
     <SearchLayout>
-      <div className="font-semibold bg-white flex flex-col items-center text-amber-600 min-h-screen pb-24">
+      <div className="font-semibold bg-[#F5F5DC] flex flex-col items-center text-amber-600 min-h-screen pb-24">
         <h1 className="text-2xl font-bold my-4">Resultados de búsqueda</h1>
         {loading && <div className="text-center">Buscando libros...</div>}
         {!loading && books.length === 0 && (

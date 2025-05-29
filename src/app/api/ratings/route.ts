@@ -46,10 +46,18 @@ export async function POST(req: Request) {
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
   const bookId = searchParams.get('bookId');
+  const userId = searchParams.get('userId');
   if (!bookId) {
     return NextResponse.json({ error: 'Falta el bookId' }, { status: 400 });
   }
   const ratings = await prisma.bookRating.findMany({ where: { bookId } });
   const average = ratings.length > 0 ? ratings.reduce((acc, r) => acc + r.rating, 0) / ratings.length : 0;
-  return NextResponse.json({ average, count: ratings.length });
+  let userRating = null;
+  if (userId) {
+    const userRatingObj = await prisma.bookRating.findUnique({
+      where: { userId_bookId: { userId: parseInt(userId, 10), bookId } },
+    });
+    userRating = userRatingObj?.rating ?? null;
+  }
+  return NextResponse.json({ average, count: ratings.length, userRating });
 }

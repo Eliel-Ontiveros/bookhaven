@@ -1,5 +1,3 @@
-// src/utils/books.ts
-
 export const genreTranslations: Record<string, string> = {
   "Ficcion": "Fiction",
   "Misterio": "Mystery",

@@ -1,4 +1,3 @@
-// src/hooks/useRecommendations.ts
 import { useEffect, useState } from "react";
 import { fetchBooksByGenres, genreTranslations } from "../utils/books";
 
