@@ -36,8 +36,6 @@ BookHaven es una aplicación web diseñada para amantes de la lectura. Permite a
 * **Autenticación:** JWT (jsonwebtoken), bcryptjs
 * **API Externa:** Google Books API
 * **Notificaciones:** React Hot Toast
-* **Manejo de Formularios (implícito):** Formidable (para posibles subidas de archivos, aunque no se ve un uso directo en el código actual para ello)
-* **Generación de IDs:** UUID
 
 ## Empezando
 
