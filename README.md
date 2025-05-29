@@ -24,7 +24,7 @@ BookHaven es una aplicación web diseñada para amantes de la lectura. Permite a
 * **Sección de Comentarios:** Espacio para que los usuarios dejen sus opiniones y discutan sobre los libros.
 * **Listas de Lectura Personalizadas:** Los usuarios pueden organizar libros en listas predeterminadas ("Quiero Leer", "Leyendo Actualmente", "Leídos") y crear listas personalizadas.
 * **Recomendaciones:** Sugerencias de libros basadas en los géneros favoritos del usuario y la opción de explorar otros géneros o buscar por autor.
-* **Perfil de Usuario:** Muestra la información del usuario, sus géneros favoritos y sus listas de lectura.
+* **Perfil de Usuario:** Muestra la información del usuario y sus listas de lectura.
 
 ## Tecnologías Utilizadas
 
